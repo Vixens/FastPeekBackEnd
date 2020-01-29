@@ -27,15 +27,16 @@ func (s *Server) GetMenuHandler(c *gin.Context) {
 
 	menufoods, err := model.GetFoodsByMenuID(s.DB, uint(MenuID))
 	if err != nil {
-		menufoods = []model.MenuWithFoodSummary{}
+		menufoods = []model.Food{}
 	}
 
 	c.JSON(http.StatusOK, shopfoods)
 	c.JSON(http.StatusOK, menufoods)
 }
-func (s *Server) NewMenuHandler(c *gin.Context) {
+func (s *Server) NewFoodHandler(c *gin.Context) {
 	food := new(model.Food)
 	food.Shopid, _ = strconv.Atoi(c.Param("shopid"))
+	food.Menuid, _ = strconv.Atoi(c.Param("menuid"))
 	c.BindJSON(&food)
 
 	if err := model.CreateFood(s.DB, food); err != nil {

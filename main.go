@@ -19,7 +19,7 @@ func main() {
 
 	router.GET("/:shopid/:menuid/menu", server.GetMenuHandler)
 
-	router.POST("/:shopid/:menuid/menu/new", server.NewMenuHandler)
+	router.POST("/:shopid/:menuid/menu/new", server.NewFoodHandler)
 
 	router.Run(":8080")
 }
